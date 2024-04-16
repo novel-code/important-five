@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply text-slate-950 tracking-wider
+    @apply text-slate-950 tracking-wider font-medium
   }
 }
 

@@ -24,22 +24,14 @@ const importantFiveTasks = [
 ];
 
 function App() {
-  const [wins, setWins] = useLocalStorage("wins", [
-    "Mon Apr 09 2024",
-    "Mon Apr 10 2024",
-    "Mon Apr 12 2024",
-    "Mon Apr 13 2024",
-    "Mon Apr 14 2024",
-    "Mon Apr 15 2024",
-  ]);
+  const [wins, setWins] = useLocalStorage("wins", []);
 
-  const winColor =
-    wins.at(-1) === new Date().toDateString() ? "text-yellow-500" : "";
+  const won = wins.at(-1) === new Date().toDateString() ? true : false;
+  const winColor = won ? "text-yellow-500" : "";
 
   function handleWinClick() {
-    // console.log(new Date(-1).toDateString());
-
-    setWins(wins);
+    if (won) return setWins((prev) => prev.slice(0, prev.length - 1));
+    setWins((prev) => [...prev, new Date().toDateString()]);
   }
 
   return (
